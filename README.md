@@ -1,4 +1,16 @@
-# Getting Started with Create React App
+# Calculate Your Loan Installments
+![alt text](./screenshot.png)
+This widget requires both the amount and duration from the user to calculate the monthly installment for the provided inputs. 
+
+## Integration guidelines
+The react app can be used as a is exposed as a custom web component called `installment-calculator` which can be added as an element in your html which will serve as a widget. 
+
+>*Sidenote: WEB Component CSS not incorporated*
+>
+>Currently the functionality of the widget is achieved if we use it as a web component, but the styles are not incorporated. 
+
+---
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

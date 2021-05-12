@@ -1,21 +1,7 @@
 import axios, { AxiosResponse } from "axios"
+import { MonthlyInstallmentReq, MonthlyInstallmentRes } from "../../types"
 
 const monthlyInstallmentUrl = "/monthlyInstallment.response.json";
-
-interface MonthlyInstallmentReq {
-    amount: string;
-    duration: string;
-}
-
-interface MonthlyInstallmentRes {
-    amount: string;
-    duration: string;
-    monthlyInstallment: string
-}
-
-interface MonthlyInstallmentResBase {
-    data: MonthlyInstallmentRes
-}
 
 export function monthlyInstallment({ amount, duration }: MonthlyInstallmentReq):
     Promise<AxiosResponse<MonthlyInstallmentRes>> {
