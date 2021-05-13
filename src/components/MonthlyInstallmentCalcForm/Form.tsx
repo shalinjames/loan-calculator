@@ -40,7 +40,7 @@ const Form = ({
         </FormControl>
 
         <FormControl>
-            <InputLabel id="duration">Duration</InputLabel>
+            <InputLabel htmlFor="duration">Duration</InputLabel>
             <Select
                 native
                 labelId="duration"

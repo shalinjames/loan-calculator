@@ -1,6 +1,6 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import MonthlyInstallmentCalculator from "./pages/MonthlyInstallmentCalculator";
 
 export default class InstallmentCalculator extends HTMLElement {
     connectedCallback() {
@@ -8,7 +8,7 @@ export default class InstallmentCalculator extends HTMLElement {
         const shadowRoot = this.attachShadow({ mode: "open" });
         shadowRoot.appendChild(mountPoint);
 
-        ReactDOM.render(React.createElement(App, {}, React.createElement("slot")),
+        ReactDOM.render(React.createElement(MonthlyInstallmentCalculator, {}, React.createElement("slot")),
             mountPoint
         );
     }

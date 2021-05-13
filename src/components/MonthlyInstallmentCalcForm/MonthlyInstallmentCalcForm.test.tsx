@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import MonthlyInstallmentCalcForm from "./MonthlyInstallmentCalcForm";
 
@@ -39,28 +39,54 @@ describe("When Mounting MonthlyInstallmentCalcForm", () => {
         expect(amountElement).toHaveValue("100000");
     });
 
-    test("Should call the validators while focusing out of the element", async () => {
+    test("Should call the validators while focusing out of the element", () => {
         let mockFun = jest.fn().mockImplementation(() => {
-            return "input"
+            return "validamount"
         });
         renderComponent({
             amount: mockFun
         });
         let amountElement = screen.getByRole("textbox");
 
-        fireEvent.blur(amountElement, {
-            target: {
-                name: "amount",
-                value: "abcdefg"
-            }
+        act(() => {
+            fireEvent.blur(amountElement, {
+                target: {
+                    name: "amount",
+                    value: "abcdefg"
+                }
+            });
         });
+
         expect(mockFun).toHaveBeenCalledWith("abcdefg");
+        expect(amountElement).toHaveValue("validamount");
     });
+
+    test("Should not call the validator if not defined on blur", () => {
+        let mockFun = jest.fn().mockImplementation(() => {
+            return "validamount"
+        });
+        renderComponent({
+            duration: mockFun
+        });
+        let amountElement = screen.getByRole("textbox");
+
+        act(() => {
+            fireEvent.blur(amountElement, {
+                target: {
+                    name: "amount",
+                    value: "abcdefg"
+                }
+            });
+        });
+        expect(mockFun).toHaveBeenCalledTimes(0);
+        expect(amountElement).toHaveValue("abcdefg");
+    });
+
 
     test("Should call the getInstallment while submitting the form", () => {
         renderComponent();
         const submitButton = screen.getByTestId("calculate-button");
-        fireEvent.click(submitButton);
+        act(() => { fireEvent.click(submitButton) });
         expect(mockGetInstallment).toHaveBeenCalled();
     });
 

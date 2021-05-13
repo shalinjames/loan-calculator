@@ -1,5 +1,5 @@
 import { validateAmount, validateDuration } from "./validators";
-import { AMOUNT, LOAN_DURATION } from "../../constants/range";
+import { AMOUNT, LOAN_DURATION } from "../constants/range";
 
 describe("When Validators are called", () => {
 
